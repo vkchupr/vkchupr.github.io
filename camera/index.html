@@ -7,16 +7,9 @@
   </style>
   </head>
   <body onload="init();">
-     <p>
-    <button onclick="startWebcam();">Start WebCam</button>
-    <button onclick="stopWebcam();">Stop WebCam</button> 
-       <button onclick="snapshot();">Take Snapshot</button> 
-    </p>
-    <video onclick="snapshot(this);" width=64 height=48 id="video" autoplay></video>
-  <p>
-
-        Screenshots : <p>
+      Screenshots : <p>
       <canvas  id="myCanvas" width="320" height="240"></canvas>  
+  <video onclick="snapshot(this);" width=64 height=48 id="video" autoplay></video>
   </body>
   <script>
           navigator.getUserMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
@@ -41,14 +34,11 @@
               function(err) {
                  console.log("Error: " + err);
               }
+              snapshot(this);
            );
         } else {
            console.log("No getUserMedia");
         }  
-      }
-
-      function stopWebcam() {
-          webcamStream.stop();
       }
 
       var canvas, ctx;
@@ -56,6 +46,7 @@
       function init() {
         canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext('2d');
+        startWebcam(this);
       }
 
       function snapshot() {
