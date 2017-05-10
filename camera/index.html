@@ -34,7 +34,8 @@
               function(err) {
                  console.log("Error: " + err);
               }
-              snapshot();
+              delay(5000);
+              this.snapshot();
            );
         } else {
            console.log("No getUserMedia");
@@ -46,7 +47,7 @@
       function init() {
         canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext('2d');
-        startWebcam();
+        this.startWebcam();
       }
 
       function snapshot() {
