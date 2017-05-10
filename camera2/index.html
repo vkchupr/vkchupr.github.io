@@ -2,6 +2,9 @@
   <head>
   </head>
   <body onload="init();">
+     <p>
+
+    </p>
     <video onclick="snapshot(this);" width=640 height=480 id="video" autoplay></video>
   <p>
 
@@ -13,13 +16,8 @@
 
       var video;
       var webcamStream;
-      var canvas, ctx;
 
       function init() {
-
-        canvas = document.getElementById("myCanvas");
-        ctx = canvas.getContext('2d');
-
         if (navigator.getUserMedia) {
            navigator.getUserMedia (
 
@@ -40,6 +38,13 @@
         } else {
            console.log("No getUserMedia");
         }  
+      }
+
+      var canvas, ctx;
+
+      function init() {
+        canvas = document.getElementById("myCanvas");
+        ctx = canvas.getContext('2d');
       }
 
       function snapshot() {
