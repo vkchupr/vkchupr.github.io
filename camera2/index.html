@@ -2,18 +2,16 @@
   <head>
   </head>
   <body onload="init();">
-    <h1>Take a snapshot of the current video stream</h1>
-   Click on the Start WebCam button.
      <p>
     <button onclick="startWebcam();">Start WebCam</button>
     <button onclick="stopWebcam();">Stop WebCam</button> 
        <button onclick="snapshot();">Take Snapshot</button> 
     </p>
-    <video onclick="snapshot(this);" width=400 height=400 id="video" controls autoplay></video>
+    <video onclick="snapshot(this);" width=400 height=400 id="video" autoplay></video>
   <p>
 
         Screenshots : <p>
-      <canvas  id="myCanvas" width="400" height="350"></canvas>  
+      <canvas  id="myCanvas" width="400" height="400"></canvas>  
   </body>
   <script>
           navigator.getUserMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
