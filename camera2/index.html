@@ -3,9 +3,7 @@
   </head>
   <body onload="init();">
      <p>
-    <button onclick="startWebcam();">Start WebCam</button>
-    <button onclick="stopWebcam();">Stop WebCam</button> 
-       <button onclick="snapshot();">Take Snapshot</button> 
+
     </p>
     <video onclick="snapshot(this);" width=640 height=480 id="video" autoplay></video>
   <p>
@@ -19,7 +17,7 @@
       var video;
       var webcamStream;
 
-      function startWebcam() {
+      function init() {
         if (navigator.getUserMedia) {
            navigator.getUserMedia (
 
@@ -33,8 +31,6 @@
                  video.src = window.URL.createObjectURL(localMediaStream);
                  webcamStream = localMediaStream;
               },
-
-
               function(err) {
                  console.log("Error: " + err);
               }
@@ -42,10 +38,6 @@
         } else {
            console.log("No getUserMedia");
         }  
-      }
-
-      function stopWebcam() {
-          webcamStream.stop();
       }
 
       var canvas, ctx;
