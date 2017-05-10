@@ -1,46 +1,61 @@
 <html>
-  <body>
-    <audio controls autoplay></audio>
-    <script type="text/javascript" src="recorder.js"> </script>
+  <head>
+  </head>
+  <body onload="init();">
+     <p>
+    <button onclick="startWebcam();">Start WebCam</button>
+    <button onclick="stopWebcam();">Stop WebCam</button> 
+       <button onclick="snapshot();">Take Snapshot</button> 
+    </p>
+    <video onclick="snapshot(this);" width=640 height=480 id="video" autoplay></video>
+  <p>
 
-    <input onclick="startRecording()" type="button" value="start recording" />
-    <input onclick="stopRecording()" type="button" value="stop recording and play" />
-
-    <script>
-      var onFail = function(e) {
-        console.log('Rejected!', e);
-      };
-
-      var onSuccess = function(s) {
-        var context = new webkitAudioContext();
-        var mediaStreamSource = context.createMediaStreamSource(s);
-        recorder = new Recorder(mediaStreamSource);
-        recorder.record();
-
-        // audio loopback
-        // mediaStreamSource.connect(context.destination);
-      }
-
-      window.URL = window.URL || window.webkitURL;
-      navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-
-      var recorder;
-      var audio = document.querySelector('audio');
-
-      function startRecording() {
-        if (navigator.getUserMedia) {
-          navigator.getUserMedia({audio: true}, onSuccess, onFail);
-        } else {
-          console.log('navigator.getUserMedia not present');
-        }
-      }
-
-      function stopRecording() {
-        recorder.stop();
-        recorder.exportWAV(function(s) {
-          audio.src = window.URL.createObjectURL(s);
-        });
-      }
-    </script>
+        Screenshots : <p>
+      <canvas  id="myCanvas" width="320" height="240"></canvas>  
   </body>
+  <script>
+          navigator.getUserMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+
+      var video;
+      var webcamStream;
+
+      function startWebcam() {
+        if (navigator.getUserMedia) {
+           navigator.getUserMedia (
+
+              {
+                 video: true,
+                 audio: false
+              },
+
+              function(localMediaStream) {
+                  video = document.querySelector('video');
+                 video.src = window.URL.createObjectURL(localMediaStream);
+                 webcamStream = localMediaStream;
+              },
+              function(err) {
+                 console.log("Error: " + err);
+              }
+           );
+        } else {
+           console.log("No getUserMedia");
+        }  
+      }
+
+      function stopWebcam() {
+          webcamStream.stop();
+      }
+
+      var canvas, ctx;
+
+      function init() {
+        canvas = document.getElementById("myCanvas");
+        ctx = canvas.getContext('2d');
+      }
+
+      function snapshot() {
+        ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+      }
+
+  </script>
 </html>
