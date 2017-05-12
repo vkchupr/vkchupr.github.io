@@ -11,8 +11,8 @@
     border: 10px #333 solid;
 }
 #videoElement {
-    width: 500px;
-    height: 375px;
+    width: 320px;
+    height: 240px;
     background-color: #666;
 }
 </style>
@@ -20,7 +20,7 @@
   
 <body>
 <div id="container">
-    <video autoplay="true" id="videoElement">
+    <video autoplay="true" width="320" height="" id="videoElement">
      
     </video>
 </div>
@@ -30,7 +30,7 @@ Canvas 1.5:
 </div>
 
 <script>
-	var video = document.querySelector("#videoElement");
+	var video = document.getElementById("#videoElement");
 
 	var canvas, ctx;
 
