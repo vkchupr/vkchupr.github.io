@@ -6,7 +6,7 @@
   }
   </style>
   </head>
-  <body onload="init();">
+  <body onload="init(this);">
       Screenshots : <p>
       <canvas  id="myCanvas" width="320" height="240"></canvas>  
   <video onclick="snapshot(this);" width=64 height=48 id="video" autoplay></video>
@@ -34,9 +34,9 @@
               function(err) {
                  console.log("Error: " + err);
               }
-              delay(5000);
-              this.snapshot();
            );
+           delay(5000);
+           this.snapshot();
         } else {
            console.log("No getUserMedia");
         }  
