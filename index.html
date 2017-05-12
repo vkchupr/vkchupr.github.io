@@ -20,55 +20,48 @@
   
 <body>
 <div id="container">
-    <video autoplay="true" id="video"></video>
+    <video autoplay="true" id="videoElement" onClick="takeSnapshot()"></video>
 </div>
-Canvas 1.5:
+Canvas:
 <div id="container">
-	<canvas  id="myCanvas" width="320" height="240"></canvas>     
+	<canvas  id="myCanvas"></canvas>     
 </div>
 
 <script>
-	var video = document.getElementById("#video");
-
+	var video = document.querySelector("#videoElement");
 	var canvas, ctx;
-
-	var delay;
 	 
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 	 
 	if (navigator.getUserMedia) {       
 	    navigator.getUserMedia({video: true}, handleVideo, videoError);
 	}
-	//this.startWebcam();
-
+	 
 	function takeSnapshot(){
-		canvas = document.getElementById("myCanvas");
+				canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext('2d');
-        //delay = Math.floor(Math.random() * (5000 - 1000)) + 1000;
-        ctx.drawImage(video, 0,0, canvas.width, canvas.height);
         alert("Snapshot!");
+        ctx.drawImage(video, 0,0, video.width, video.height);
 	}
-
+  
 	function handleVideo(stream) {
 		if (window.URL) {
 			video.src = window.URL.createObjectURL(stream) || stream;
 			video.play();
-			takeSnapshot();
 		} else {
-			video.src = stream; // Opera.
+			video.src = stream || stream; // Opera.
 			video.play();
 	}
-
+  
 	video.onerror = function(e) {
 		stream.stop();
 	};
-
-  	stream.onended = noStream;
+  	//stream.onended = noStream;
 }
 	 
 	function videoError(e) {
 		alert("Error!");
-		//console.log("Error: " + e.name);
+		console.log("Error: " + e.name);
 	}
 </script>
 </body>
