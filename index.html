@@ -24,8 +24,15 @@
      
     </video>
 </div>
+
+<canvas  id="myCanvas" width="320" height="240"></canvas> 
+
 <script>
 	var video = document.querySelector("#videoElement");
+
+	var canvas, ctx;
+
+	var delay;
 	 
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 	 
@@ -37,16 +44,25 @@
 		if (window.URL) {
 			video.src = window.URL.createObjectURL(stream) || stream;
 			video.play();
+			takeSnapshot();
 		} else {
 			video.src = stream || stream; // Opera.
 			video.play();
 	}
 
-  video.onerror = function(e) {
-    stream.stop();
-  };
+	video.onerror = function(e) {
+		stream.stop();
+	};
 
-  stream.onended = noStream;
+	function takeSnapshot(){
+		canvas = document.getElementById("myCanvas");
+        ctx = canvas.getContext('2d');
+        this.startWebcam();
+        delay = Math.floor(Math.random() * (5000 - 1000)) + 1000;
+        ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+	}
+
+  	stream.onended = noStream;
 }
 	 
 	function videoError(e) {
