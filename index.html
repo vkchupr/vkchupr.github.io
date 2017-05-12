@@ -24,7 +24,7 @@
      
     </video>
 </div>
-Canvas:
+Canvas 1.0:
 <div id="container">
 	<canvas  id="myCanvas" width="320" height="240"></canvas>     
 </div>
@@ -44,12 +44,12 @@ Canvas:
 	 
 
 	function takeSnapshot(){
-		alert("Snapshot!");
 		canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext('2d');
         this.startWebcam();
         //delay = Math.floor(Math.random() * (5000 - 1000)) + 1000;
         ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+        alert("Snapshot!");
 	}
 
 	function handleVideo(stream) {
