@@ -30,7 +30,7 @@ Canvas 1.5:
 </div>
 
 <script>
-	var video = document.querySelection("#videoElement");
+	var video = document.getElementById("#videoElement");
 
 	var canvas, ctx;
 
@@ -47,7 +47,7 @@ Canvas 1.5:
 		canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext('2d');
         //delay = Math.floor(Math.random() * (5000 - 1000)) + 1000;
-        ctx.drawImage(videoElement, 0,0, canvas.width, canvas.height);
+        ctx.drawImage(video, 0,0, canvas.width, canvas.height);
         alert("Snapshot!");
 	}
 
