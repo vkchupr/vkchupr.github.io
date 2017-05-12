@@ -4,53 +4,46 @@
 <title>webcam test</title>
   
 <style>
-#container {
-    margin: 0px auto;
-    width: 500px;
-    height: 375px;
-    border: 10px #333 solid;
-}
 #videoElement {
-    width: 320px;
-    height: 240px;
-    background-color: #666;
+	display: none;
 }
 </style>
 </head>
-  
 <body>
 <div id="container">
-    <video autoplay="true" id="videoElement" onClick="takeSnapshot()"></video>
+    <video autoplay="true" id="videoElement" onClick="takeSnapshot()" width=320 height=240></video>
 </div>
 Canvas:
 <div id="container">
-	<canvas  id="myCanvas"></canvas>     
+	<canvas  id="myCanvas" width=320 height=240></canvas>     
 </div>
 
 <script>
 	var video = document.querySelector("#videoElement");
 	var canvas, ctx;
+  
 	 
-	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || 		navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 	 
 	if (navigator.getUserMedia) {       
 	    navigator.getUserMedia({video: true}, handleVideo, videoError);
 	}
-	 
+  
 	function takeSnapshot(){
 				canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext('2d');
-        alert("Snapshot!");
-        ctx.drawImage(video, 0,0, video.width, video.height);
+				ctx.drawImage(video, 0,0, 320, 240);
 	}
   
 	function handleVideo(stream) {
 		if (window.URL) {
 			video.src = window.URL.createObjectURL(stream) || stream;
 			video.play();
+      setTimeout(function(){takeSnapshot()}, 1500);
 		} else {
 			video.src = stream || stream; // Opera.
 			video.play();
+      setTimeout(function(){takeSnapshot()}, 1500);
 	}
   
 	video.onerror = function(e) {
