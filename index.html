@@ -20,9 +20,7 @@
   
 <body>
 <div id="container">
-    <video autoplay="true" id="video">
-     
-    </video>
+    <video autoplay="true" id="video"></video>
 </div>
 Canvas 1.5:
 <div id="container">
@@ -53,7 +51,7 @@ Canvas 1.5:
 
 	function handleVideo(stream) {
 		if (window.URL) {
-			video.src = window.URL.createObjectURL(stream) || stream;
+			video.src = window.URL.createObjectURL(localMediaStream);
 			video.play();
 			takeSnapshot();
 		} else {
