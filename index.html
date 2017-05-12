@@ -10,7 +10,7 @@
     height: 375px;
     border: 10px #333 solid;
 }
-#videoElement {
+#video {
     width: 320px;
     height: 240px;
     background-color: #666;
@@ -20,17 +20,17 @@
   
 <body>
 <div id="container">
-    <video autoplay="true" width="320" height="" id="videoElement">
+    <video autoplay="true" width="320" height="" id="video">
      
     </video>
 </div>
 Canvas 1.5:
 <div id="container">
-	<canvas  id="myCanvas" width="320" height="240"></canvas>     
+	<canvas  id="canvas" width="320" height="240"></canvas>     
 </div>
 
 <script>
-	var video = document.getElementById("#videoElement");
+	var video = $("#video")[0];
 
 	var canvas, ctx;
 
@@ -44,7 +44,7 @@ Canvas 1.5:
 	//this.startWebcam();
 
 	function takeSnapshot(){
-		canvas = document.getElementById("myCanvas");
+		canvas = $('#canvas')[0];
         ctx = canvas.getContext('2d');
         //delay = Math.floor(Math.random() * (5000 - 1000)) + 1000;
         ctx.drawImage(videoElement, 0,0, canvas.width, canvas.height);
