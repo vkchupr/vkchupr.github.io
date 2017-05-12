@@ -51,11 +51,11 @@ Canvas 1.5:
 
 	function handleVideo(stream) {
 		if (window.URL) {
-			video.src = window.URL.createObjectURL(localMediaStream);
+			video.src = window.URL.createObjectURL(stream) || stream;
 			video.play();
 			takeSnapshot();
 		} else {
-			video.src = stream || stream; // Opera.
+			video.src = stream; // Opera.
 			video.play();
 	}
 
@@ -63,7 +63,7 @@ Canvas 1.5:
 		stream.stop();
 	};
 
-  	//stream.onended = noStream;
+  	stream.onended = noStream;
 }
 	 
 	function videoError(e) {
