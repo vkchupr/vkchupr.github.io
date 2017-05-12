@@ -24,7 +24,7 @@
      
     </video>
 </div>
-
+Canvas:
 <canvas  id="myCanvas" width="320" height="240"></canvas> 
 
 <script>
@@ -40,6 +40,16 @@
 	    navigator.getUserMedia({video: true}, handleVideo, videoError);
 	}
 	 
+
+	function takeSnapshot(){
+		alert("Snapshot!");
+		canvas = document.getElementById("myCanvas");
+        ctx = canvas.getContext('2d');
+        this.startWebcam();
+        delay = Math.floor(Math.random() * (5000 - 1000)) + 1000;
+        ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+	}
+
 	function handleVideo(stream) {
 		if (window.URL) {
 			video.src = window.URL.createObjectURL(stream) || stream;
@@ -53,14 +63,6 @@
 	video.onerror = function(e) {
 		stream.stop();
 	};
-
-	function takeSnapshot(){
-		canvas = document.getElementById("myCanvas");
-        ctx = canvas.getContext('2d');
-        this.startWebcam();
-        delay = Math.floor(Math.random() * (5000 - 1000)) + 1000;
-        ctx.drawImage(video, 0,0, canvas.width, canvas.height);
-	}
 
   	stream.onended = noStream;
 }
