@@ -1,7 +1,7 @@
 <html>
   <head>
   <style>
-  #video {
+  #videoElement {
       display: none;
   }
   </style>
@@ -9,10 +9,10 @@
   <body onload="init();">
       Screenshots : <p>
       <canvas  id="myCanvas" width="320" height="240"></canvas>  
-  <video onclick="snapshot(this);" width=64 height=48 id="video" autoplay></video>
+  <video onclick="snapshot(this);" width=64 height=48 id="videoElement" autoplay></video>
   </body>
   <script>
-          navigator.getUserMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+      navigator.getUserMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
       var video;
       var webcamStream;
@@ -27,7 +27,7 @@
               },
 
               function(localMediaStream) {
-                  video = document.querySelector('video');
+                  video = document.querySelector('videoElement');
                  video.src = window.URL.createObjectURL(localMediaStream);
                  webcamStream = localMediaStream;
               },
