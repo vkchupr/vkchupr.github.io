@@ -16,6 +16,7 @@
 
       var video;
       var webcamStream;
+      var img;
 
       function startWebcam() {
         if (navigator.getUserMedia) {
@@ -52,6 +53,8 @@
 
       function snapshot() {
         ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+        img = canvas.toDataURL("image/png");
+        document.write('<img src="'+img+'"/>');
       }
 
   </script>
