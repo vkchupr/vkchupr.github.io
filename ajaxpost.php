@@ -1,0 +1,1 @@
+$photo = $_FILES['photo']['tmp_name'];

@@ -25,7 +25,8 @@ Canvas:
 
 <script>
 	var video = document.querySelector("#videoElement");
-	var canvas, ctx, img;
+	var canvas, ctx;
+	var img, data;
   
 	 
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || 		navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
@@ -33,14 +34,24 @@ Canvas:
 	if (navigator.getUserMedia) {       
 	    navigator.getUserMedia({video: true}, handleVideo, videoError);
 	}
-  
+
+	function ajaxSend(){
+		data = new FormData();
+		data.append(img.name,img.files[0]);
+
+		var xmlReq = new XMLHttpRequest()
+		xmlreq.open("POST","ajaxpost.php")
+		xmlreq.send(data);
+		alert("Data sent");
+	}
+
 	function takeSnapshot(){
 		canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext('2d');
 		ctx.drawImage(video, 0,0, 320, 240);
 
 		img = canvas.toDataURL("snap.png");
-        document.write('<img src="'+img+'"/>');
+		ajaxSend();
 	}
   
 	function handleVideo(stream) {
