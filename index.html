@@ -66,6 +66,7 @@ Canvas:
 
 		img = canvas.toDataURL();
 		console.log("Source: " + canvas.toDataURL());
+		var srcData = canvas.toDataURL();
 		var request = new XMLHttpRequest();
 		var url = "";
 		request.onreadystatechange = function() {//Call a function when the state changes.
