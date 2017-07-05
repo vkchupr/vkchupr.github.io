@@ -71,8 +71,8 @@ Canvas:
         ctx = canvas.getContext('2d');
 		ctx.drawImage(video, 0,0, 320, 240);
 
-		img = canvas.toDataURL("snap.png");
-		console.log("Source: " + canvas.target.result);
+		img = canvas.toDataURL();
+		console.log("Source: " + canvas.toDataURL());
 		encodeImageFileAsURL();
 	}
   
